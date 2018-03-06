@@ -1,0 +1,37 @@
+<!--main.html-->
+<!doctype html>
+
+<html>
+
+  <head>
+
+    <title>Hello</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="app/js/helloApp.js"></script>
+
+  </head>
+
+  <body ng-app="helloApp">
+
+    <div id='main' ng-controller="mainController">
+      <form ng-submit="post()">
+        <input type="text" placeholder="Your name" ng-model="newPost.created_by"/>
+        <textarea required maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
+        <input class="button" type="submit" value="Say it!" />
+      </form>
+      <div id="post-stream">
+
+        <h4>Hello feed</h4>
+
+        <div class ='post' ng-repeat="post in posts | orderBy: ' created_at' :true" ng-class-odd="'odd'" ng-class-even="'even'">
+          <p>{{post.text}}</p>
+          <small>Posted by @{{post.created_by}}</small>
+          <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+        </div>
+
+              <!--to be populated by Angular-->
+        </div>
+      </div>
+
+  </body>
+</html>
